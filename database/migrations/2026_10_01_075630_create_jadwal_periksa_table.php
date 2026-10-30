@@ -13,7 +13,14 @@ return new class extends Migration
     {
         Schema::create('jadwal_periksa', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('id_dokter');
+            $table->string('hari');
+            $table->time('jam_mulai');
+            $table->time('jam_selesai');
+            $table->boolean('aktif')->default(true);
             $table->timestamps();
+
+            $table->foreign('id_dokter')->references('id')->on('users')->onDelete('cascade');
         });
     }
 
